@@ -1,0 +1,144 @@
+:root {
+    --green-color: #41786B;
+    --orange-color: #EE7116;
+}
+h1 {
+    font-size: 32px;
+}
+h2 {
+    font-size: 22px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+button {
+    font-size: 12px;
+}
+a, p {
+    font-size: 14px;
+}
+html body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+    background-color: white;
+}
+html {
+    background-color: rgb(50, 54, 57);
+}
+.header {
+     background-color: rgb(50, 54, 57);
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     padding: 10px;
+}
+.header div {
+    margin-right: 25px;
+    color: var(--orange-color)
+}
+.header div img {
+    height: 70px;
+}
+.content {
+    width: 70%;
+    margin: auto;
+    text-align: center;
+    border: var(--orange-color) solid 3px;
+    height: 100%;
+    padding: 25px;
+}
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.devicesTable table {
+    width: 100%;
+    text-align: left;
+}
+.devicesTable table thead {
+    background-color: var(--green-color);
+    color: var(--orange-color);
+    width: 100%;
+}
+th h3 {
+    margin: 10px;
+}
+.devicesTable table tbody tr {
+    color: var(--orange-color);
+    margin-left: 10px;
+    background-color: white;
+}
+.devicesTable table tbody tr:nth-child(even) {
+    background-color: lightgray;
+}
+.devicesTable table tbody tr td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.sortingOptions {
+    position: absolute;
+    background-color: white;
+    border: var(--orange-color) solid 3px;
+    text-align: left;
+    padding: 10px
+}
+.footer {
+    background-color: rgb(50, 54, 57);
+    color: var(--orange-color);
+    text-align: center;
+    padding: 10px;
+    margin-top: 50px;
+}
+.computerNameHead {
+    padding: 5px;
+}
+button {
+    background-color: white;
+    color: var(--orange-color);
+    border: solid 3px var(--orange-color);
+    width: 150px;
+    height: 30px;
+}
+button:hover {
+    background-color: var(--orange-color);
+    color: white;
+    border: solid 3px var(--orange-color);
+}
+button:hover::after {
+    content:  " >";
+}
+a {
+    color: var(--orange-color);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 560px) {
+    .header {
+        justify-content: center;
+        flex-direction: column;
+    }
+    .header div img {
+        height: 45px;
+    }
+    .devicesTable table {
+        text-align: center;
+    }
+    .controls {
+        width: 100%;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .controls button {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}

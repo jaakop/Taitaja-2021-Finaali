@@ -1,0 +1,26 @@
+
+button {
+    width: auto;
+}
+.deviceListButtons {
+    margin-top: 25px; 
+}
+#devicesTableBody tr td {
+    width: fit-content;
+}
+@media (max-width: 560px) {
+    button {
+        height: fit-content;
+        margin-top: 5px;
+    }
+    .selectors {
+        display: flex;
+        flex-direction: column;
+    }
+    .deviceListButtons {
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}

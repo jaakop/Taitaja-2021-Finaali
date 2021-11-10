@@ -1,0 +1,63 @@
+:root {
+    --green-color: #41786B;
+    --orange-color: #EE7116;
+}
+.computerHeader {
+    display: flex;
+}
+.computerHeader div {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.computerHeader div p{
+    margin: 10px;
+    margin-top: 0;
+    color: rgb(50, 54, 57);
+    font-weight: bold;
+}
+.computerHeader div h4 {
+    margin: 10px;
+    margin-bottom: 0;
+    color: var(--green-color);
+    font-weight: bold;
+}
+.computerHeader div button {
+    margin: 10px;
+}
+.drawer {
+    color: white;
+    background-color: var(--orange-color);
+    border-collapse: collapse;
+    border: 3px solid var(--orange-color);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+.drawer h2 {
+    margin-left: 3px;
+}
+.drawer h2:hover {
+    cursor: pointer;
+}
+.drawer table {
+    width: 100%;
+    background-color: white;
+    color: rgb(50, 54, 57);
+}
+.drawerInfo {
+    width: 25%;
+}
+
+@media (max-width: 480px) {
+    .drawer{
+        text-align: center;
+    }
+    .computerHeader {
+        flex-direction: column;
+    }
+    .computerHeader div {
+        text-align: center;
+        align-items: center;
+    }
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taitaja 2021</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="./js/jquery.canvasjs.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div>
+            <a href="../">
+                <img alt="logo" src="../images/opinsys-logo.png">
+            </a>
+        </div>
+        <div>
+            <h1>Kettula</h1>
+        </div>
+    </div>
+    <div class="content">
+        <div class="selectors">
+            <button id="pieButton">Akun kunto</button>
+            <button id="columnButton">Käyttöjärjestelmä versiot</button>
+            <button id="deviceListButton">Koneiden käyttöaste</button>
+        </div>
+        <div id="pieChart" style="height: 500px; width: 100%;">
+        </div>
+        <div id="batteryChart" style="height: 500px; width: 100%;">
+        </div>
+        <div id="deviceList">
+            <div class="deviceListButtons">
+                <button id="2021devices">Koneet, joita ei ole käynnistetty vuoden 2021 aikana</button>
+                <button id="2020devices">Koneet, joita ei ole käynnistetty vuoden 2020 aikana</button>
+                <button id="alldevices">Kaikki koneet</button>
+            </div>
+            <div class="devicesTable">
+                <h4 id="devicesHeader">Kaikki koneet</h4>
+                <table id="devicesTable">
+                    <thead>
+                        <tr>
+                            <th>Nimi</th>
+                            <th>Koulu</th>
+                            <th>Viimeinen käyttö päivä</th>
+                        </tr>
+                    </thead>
+                    <tbody id="devicesTableBody">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>p. 014 4591624</p>
+        <p>Ylistömäentie 31 B</p>
+        <p>40500 Jyväskylä</p>
+        <p><a href="mailto:info@opinsys.fi">info@opinsys.fi</a></p>
+    </div>
+    <script>
+        var devices = [];
+        $(document).ready(function () {
+            $.ajax({
+                //testilaitteet_graafi.json = testilaitteet.json according to instructions.
+                url: "../testilaitteet.json", success: function (res) {
+                    var pieData = [];
+                    var batteryData = [];
+                    res.map(r => {
+                        var point = pieData.find(d => d.name === r.release)
+                        if (point) {
+                            point.y++;
+                        }
+                        else {
+                            pieData.push({ name: r.release, y: 1 })
+                        }
+                        if (r.battery) {
+                            var batteryPoint = batteryData.find(d => d.label === r.battery.capacity)
+                            if (batteryPoint) {
+                                batteryPoint.y++;
+                            }
+                            else {
+                                batteryData.push({ label: r.battery.capacity, x: parseFloat(r.battery.capacity.split("%")[0]), y: 1 });
+                            }
+                        }
+                        devices.push({
+                            name: r.hostname,
+                            date: new Date(r.timestamp * 1000),
+                            school: r.school
+                        })
+                    })
+                    batteryData.sort((a, b) => {
+                        if (b.label === "100%") return -1;
+                        return a.label < b.label ? -1 : 1;
+                    })
+                    var pieChartOptions = {
+                        data: [{
+                            type: "pie",
+                            dataPoints: pieData,
+                            indexLabel: "",
+                            toolTipContent: "<b>{name}</b>: {y}"
+                        }]
+                    }
+                    var batteryChartOptions = {
+                        axisY: {
+                            interval: 1
+                        },
+                        axisX: {
+                            minimum: 9,
+                            maximum: 101,
+                            labelFormatter: function (e) {
+                                return e.value + "%";
+                            }
+                        },
+                        data: [{
+                            type: "column",
+                            dataPoints: batteryData,
+                        }]
+                    }
+
+                    $("#batteryChart").CanvasJSChart(batteryChartOptions)
+                    $("#pieChart").CanvasJSChart(pieChartOptions)
+                    $("#pieChart").hide()
+                    $("#deviceList").hide();
+                }
+            })
+            $("#columnButton").click(function () {
+                $("#batteryChart").hide()
+                $("#pieChart").show()
+                $("#deviceList").hide();
+                // re-render chart so that size is adjusted correctly if screen size has been changed
+                $("#pieChart").CanvasJSChart().render()
+            })
+            $("#pieButton").click(function () {
+                $("#batteryChart").show()
+                $("#pieChart").hide()
+                $("#deviceList").hide();
+                // re-render chart so that size is adjusted correctly if screen size has been changed
+                $("#batteryChart").CanvasJSChart().render()
+            })
+            $("#deviceListButton").click(function () {
+                $("#batteryChart").hide()
+                $("#pieChart").hide()
+                $("#deviceList").show();
+                $("#devicesHeader").text("Kaikki koneet");
+                renderDevices();
+            })
+            $("#alldevices").click(function () {
+                $("#devicesHeader").text("Kaikki koneet");
+                renderDevices();
+            })
+            $("#2021devices").click(function () {
+                $("#devicesHeader").text("Koneet, joita ei ole käynnistetty vuoden 2021 aikana");
+                renderDevices(2021);
+            })
+            $("#2020devices").click(function () {
+                $("#devicesHeader").text("Koneet, joita ei ole käynnistetty vuoden 2020 aikana");
+                renderDevices(2020);
+            })
+        })
+
+        function renderDevices(year) {
+            $("#devicesTableBody").html("");
+            let counter = 0;
+            devices.map((d) => {
+                if (!year || d.date.getFullYear() < year) {
+                    $("#devicesTableBody").append("<tr><td>" + d.name + "</td><td>" + d.school + "</td><td>" + d.date.toLocaleDateString() + "</td></tr>");
+                    counter++;
+                }
+            })
+            $("#devicesHeader").text($("#devicesHeader").text() + ": " + counter + " kpl");
+        }
+    </script>
+
+</body>
+
+</html>

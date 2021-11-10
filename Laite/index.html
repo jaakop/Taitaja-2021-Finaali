@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taitaja 2021</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div>
+            <a href="../">
+                <img alt="logo" src="../images/opinsys-logo.png">
+            </a>
+        </div>
+        <div>
+            <h1>Kettula</h1>
+        </div>
+    </div>
+    <div class="content">
+        <div class="computerHeader">
+            <img alt="computer image" src="../images/computer.jpg">
+            <div>
+                <h4 id="name"></h4>
+                <p id="type"></p>
+                <button>Muokkaa</button>
+                <button>Muut toiminnot</button>
+            </div>
+        </div>
+        <div class="drawer">
+            <h2>Laitteen tiedot</h2>
+            <div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>DN</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Laitteen valmistaja</p>
+                            </td>
+                            <td id="manufacturer">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Laitteen malli</p>
+                            </td>
+                            <td id="product">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Sarjanumero</p>
+                            </td>
+                            <td id="serial">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>MAC-osoite</p>
+                            </td>
+                            <td id="macs">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Laitteen ensisijainen käyttäjä</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Käynnistymistapa</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Tulostimen laiteosoite</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Tulostimen ajuritiedosto </p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Oletusäänilaite (sisään)</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Oletusäänilaite (ulos)</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Vieraskirjautuminen sallittu</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Henkilökohtainen laite</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Levykuvan automaattinen päivitys</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Henkilökohtaisesti ylläpidettävä</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Luotu (LDAP)</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Muokattu (LDAP)</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Kuvaus</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="drawer">
+            <h2>Levykuva ja kernel-asetukset</h2>
+            <div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Käytössä oleva työpöytäkuva</p>
+                            </td>
+                            <td id="usedImage">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Työpöytäkuva</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Levykuvasarjan lähdeosoite</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Kernel-versio</p>
+                            </td>
+                            <td id="kernelVersion">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Kernel-parametrit</p>
+                            </td>
+                            <td id="kernelArgs">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="drawerInfo">
+                                <p>Sertifikaatit</p>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="drawer">
+            <h2>Automaattisammutus</h2>
+        </div>
+        <div class="drawer">
+            <h2>Hankintatiedot</h2>
+        </div>
+        <div class="drawer">
+            <h2>Sijainti</h2>
+        </div>
+        <div class="drawer">
+            <h2>Näyttöasetukset</h2>
+        </div>
+    </div>
+    <div class="footer">
+        <p>p. 014 4591624</p>
+        <p>Ylistömäentie 31 B</p>
+        <p>40500 Jyväskylä</p>
+        <p><a href="mailto:info@opinsys.fi">info@opinsys.fi</a></p>
+    </div>
+<script>
+    $(document).ready(function () {
+        $("table").hide();
+        $(".drawer").find("h2").click(function () {
+            if ($(this.parentElement).find("table").is(":visible"))
+                $(this.parentElement).find("table").hide()
+            else
+                $(this.parentElement).find("table").show()
+        })
+        $.ajax({url: "../API/Laite", success: function(res) {
+            res = JSON.parse(res);
+            $("#name").append(res.host);
+            $("#type").append(res.type);
+            $("#manufacturer").append("<p>" + res.manufacturer + "</p>");
+            $("#product").append("<p>" + res.product + "</p>");
+            $("#serial").append("<p>" + res.serial + "</p>");
+            $("#macs").append("<p>" + res.mac0 + "<br>" + res.mac1 + "</p>");
+            $("#usedImage").append("<p>" + res.image + "</p>");
+            $("#kernelVersion").append("<p>" + res.kernel_version + "</p>");
+            $("#kernelArgs").append("<p>" + res.kernel_args + "</p>");
+        }})
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+.real {
+    filter: grayscale();
+    transition: filter 1s;
+    height: 250px;
+}
+.real:hover {
+    filter:none;
+}
