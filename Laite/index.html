@@ -257,6 +257,17 @@
             $("#usedImage").append("<p>" + res.image + "</p>");
             $("#kernelVersion").append("<p>" + res.kernel_version + "</p>");
             $("#kernelArgs").append("<p>" + res.kernel_args + "</p>");
+        }, error: function() {
+            // For preservation fill in test values
+            $("#name").append("AX1234");
+            $("#type").append("Windows");
+            $("#manufacturer").append("<p>" + "Acer" + "</p>");
+            $("#product").append("<p>" + "Student Laptop" + "</p>");
+            $("#serial").append("<p>" + "54321" + "</p>");
+            $("#macs").append("<p>" + "12:32:12" + "<br>" + "ae:31:ea" + "</p>");
+            $("#usedImage").append("<p>" + "ISO123123" + "</p>");
+            $("#kernelVersion").append("<p>" + "1.001.2" + "</p>");
+            $("#kernelArgs").append("<p>" + "-ab 123" + "</p>");
         }})
     })
 </script>
